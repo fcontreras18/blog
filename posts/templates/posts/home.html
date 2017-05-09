@@ -38,21 +38,27 @@
         </div>  
       </div>
     </nav>
-    <h1>Welcome to Francisco's Blog!</h1>
+    <div class="container">
+      <h1 class="text-center">Welcome to Francisco's Blog!</h1>
 
-    <h2>Latest Posts</h2>
-    {% for post in posts.all %}
+      {% load static %}
+      <img src="{% static 'posts/home.jpg' %}" class="img-responsive center-block"/> 
 
-    <a href="{% url 'post_details'  post.id %}">{{ post.title }}</a>
-    <br>
-    {{ post.pub_date_pretty }}
-    <br>
-    <img src="{{ post.image.url }}" />
-    <br>
-    {{ post.summary }}
-    <br>
-    <br>
-    {% endfor %}
+      <h2>Latest Posts</h2>
+      <hr/>
+      {% for post in posts.all %}
+
+      <a href="{% url 'post_details'  post.id %}"><h3>{{ post.title }}</h3></a>
+      <h5><span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ post.pub_date_pretty }}</h5>
+      <br>
+      <img src="{{ post.image.url }}" class="img-responsive center-block" style="max-height: 150px;"/>
+      <br>
+      <p>{{ post.summary }}</p>
+      <br>
+      <br>
+      <hr/>
+      {% endfor %}
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
